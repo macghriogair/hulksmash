@@ -1,0 +1,36 @@
+language: php
+os:
+- linux
+git:
+  depth: 1
+php:
+- '7.1'
+- '7.2'
+- nightly
+matrix:
+  fast_finish: true
+sudo: false
+install:
+- composer install
+cache:
+  directories:
+  - vendor
+  - "$HOME/.cache/composer"
+script:
+- "./hulksmash app:build --env=production hulksmash-$TRAVIS_PHP_VERSION"
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+deploy:
+  provider: releases
+  api_key:
+    secure: SgKm+p7lLuPtgyGDjld3vEw7U/+Xl5IjhcXl9X/Wnl1eUQpP8usOxyWrWIZBaLfV0zO/nW3njSU83fVMPSLpEBUUMXVMxKzR3Ti9vqwtyMWvDw/H6YcBiR/1cFvHMmJqExumIPJLs2CoQ3UtL7C7dCXrs1cGJ4MVgB6pkGj0xzvYS1I4UcG9mfpKL2xrKvZKjbjKjCUVYA+1vrSm8w4Hu1Do+xb0oyNrLUj2IMTTSfq5jiZ0IDzNHa8UCq/lFaooTBHeyqz6hlGgpqhS8A/9b2/F+BqCWurnKEdOkJdFlEKYgEBTGTseifyaYWjnWDbl/mLrmSD0s+UVrKhonpcq7zCmqoQ0VOZmX6gEHpTi1zrJ6z/t2+IRzr15rbAgUhR/igi0UWA3mFLjPpsVmIGOrb4gkbKJfXmwvgstve6hZJt3Nzm3EUCzU9YZKZAHRpWLJSl1RKNEuDznlMXoJDtlkG42SBMDexFYbfQShFpdqjd+U2wmK+NZ+LNwIuQUqvWmoS8TKcizn/smRfXboEEWk4gTlQlUaPZON8iaCEw5wa8QpZNix4YyH0gbauQvTvd0gxkkWjW9ud7jmCRz09NVewE6UJawtY/DoqjpGzElby0V+woMIENNR/fM1jTN2b0JnyRoI6MtMrJ6V0xnoDHoxgEnsyBDJMVqDEgz6gUxewk=
+  file_glob: true
+  file: builds/hulksmash-*
+  skip_cleanup: true
+  on:
+    repo: macghriogair/hulksmash
+    tags: true
+    branch: master
+    php: '7.2'
