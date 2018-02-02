@@ -62,7 +62,7 @@ class CreateProjectCommand extends Command
         $this->info('Clean up...');
         $this->runShellCommand("rm -rf .git");
 
-        $this->info('Ready to built something awesome!');
+        $this->info('Ready to build something awesome!');
     }
 
     protected function askForBoilerplate()
