@@ -17,6 +17,7 @@ cache:
   - vendor
   - "$HOME/.cache/composer"
 script:
+- "./vendor/bin/phpunit --coverage-text"
 - "./hulksmash app:build --env=production hulksmash-$TRAVIS_PHP_VERSION"
 notifications:
   email:
