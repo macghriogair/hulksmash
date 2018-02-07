@@ -23,10 +23,10 @@ trait ExecutesShellCommands
         $args = func_get_args();
         $cmd = self::processCommand($args);
 
-        exec($cmd . ' 2>&1', $output, $exitCode);
+        exec($cmd . '2>&1', $output, $exitCode);
 
         if (0 !== $exitCode) {
-            throw new \RuntimeException("Command '$cmd' failed with exit code $exitCode).", $exitCode);
+            throw new \RuntimeException("Command '$cmd' failed with exit code $exitCode.");
         }
 
         return $this;

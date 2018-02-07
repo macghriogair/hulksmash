@@ -28,13 +28,6 @@ class CreateProjectCommand extends Command
      */
     protected $description = 'Creates a new PHP Project from a boilerplate.';
 
-    public function __construct(string $name = null)
-    {
-        parent::__construct($name);
-
-        $this->boilerplates = config('boilerplates');
-    }
-
     /**
      * Execute the command. Here goes the code.
      *
@@ -42,6 +35,8 @@ class CreateProjectCommand extends Command
      */
     public function handle(): void
     {
+        $this->boilerplates = config('boilerplates');
+
         $selected = $this->askForBoilerplate();
         $config = $this->boilerplates[$selected];
         $projectName = $this->askForProjectName();

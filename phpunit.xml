@@ -17,7 +17,7 @@
 >
     <testsuites>
         <testsuite name="Laravel Zero Test Suite">
-            <directory suffix="Test.php">./tests/Integration</directory>
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
     <listeners>

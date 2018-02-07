@@ -42,7 +42,7 @@ class GitCloneCommand extends Command
         // Proactivley knowing the target dir will allow us to check if it exists.
         if (is_null($targetDir = $this->argument('dir'))) {
             $end = last(explode('/', $url));
-            $targetDir = trim($end, '.git');
+            $targetDir = preg_replace('/\.git$/', '', $end);
         }
 
         if (file_exists($targetDir)) {
