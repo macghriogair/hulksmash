@@ -10,15 +10,19 @@ php:
 matrix:
   fast_finish: true
 sudo: false
+before_install:
+  - composer self-update
 install:
 - composer install
 cache:
   directories:
   - vendor
   - "$HOME/.cache/composer"
+before_script:
+  - phpenv config-add xdebug.ini | echo "xdebug not available"
 script:
 - "./vendor/bin/phpunit --coverage-text"
-- "./hulksmash app:build --env=production hulksmash-$TRAVIS_PHP_VERSION"
+- "./hulksmash app:build --env=production hulksmash-php$TRAVIS_PHP_VERSION"
 notifications:
   email:
     on_success: never
